@@ -8,11 +8,10 @@
     :root {
       --primary-color: #2c4a2e;
       --accent-color: #8b263e;
-      --bg-color: #f4f6f4;
-      --card-bg: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.92);
       --text-color: #2b2b2b;
       --text-muted: #555555;
-      --border-radius: 12px;
+      --border-radius: 16px;
     }
 
     * {
@@ -23,21 +22,29 @@
     }
 
     body {
-      background-color: var(--bg-color);
+      /* Slika pozadine sa blagim prelivom za lepši kontrast */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('pozadina.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
       color: var(--text-color);
       line-height: 1.6;
+      min-height: 100vh;
       padding-bottom: 40px;
     }
 
     /* HEADER & NAV */
     header {
-      background-color: var(--primary-color);
+      background-color: rgba(44, 74, 46, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: white;
       padding: 15px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -49,6 +56,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      letter-spacing: 0.5px;
     }
 
     .menu-btn {
@@ -56,14 +64,14 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: white;
       padding: 8px 16px;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       font-size: 0.95rem;
-      transition: background 0.2s;
+      transition: all 0.2s ease;
     }
 
     .menu-btn:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .nav-menu {
@@ -71,12 +79,14 @@
       position: absolute;
       top: 100%;
       right: 20px;
-      background: white;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
       border-radius: var(--border-radius);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      width: 230px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      width: 240px;
       overflow: hidden;
       flex-direction: column;
+      margin-top: 8px;
     }
 
     .nav-menu.active {
@@ -84,12 +94,12 @@
     }
 
     .nav-link {
-      padding: 12px 18px;
+      padding: 14px 20px;
       color: var(--text-color);
       text-decoration: none;
       border-bottom: 1px solid #eee;
       font-weight: 500;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
 
     .nav-link:last-child {
@@ -101,83 +111,75 @@
       color: var(--primary-color);
     }
 
-    /* CONTAINER */
+    /* CONTAINER & CARDS */
     .container {
-      max-width: 800px;
-      margin: 20px auto;
+      max-width: 850px;
+      margin: 25px auto;
       padding: 0 15px;
+    }
+
+    .welcome-card {
+      background: rgba(44, 74, 46, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: white;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .welcome-card h1 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+
+    .welcome-card p {
+      font-size: 0.95rem;
+      opacity: 0.9;
     }
 
     .card {
       background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: var(--border-radius);
-      padding: 20px;
+      padding: 22px;
       margin-bottom: 25px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     h2 {
       color: var(--primary-color);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       font-size: 1.4rem;
       border-bottom: 2px solid #e8eee8;
       padding-bottom: 8px;
-    }
-
-    /* DISEASE GRID & CARDS */
-    .disease-grid {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      align-items: center;
+      gap: 10px;
     }
 
-    .disease-card {
-      background: #fafafa;
-      border: 1px solid #e2e8e2;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-    }
-
-    .disease-img {
-      width: 100%;
-      max-height: 280px;
-      object-fit: cover;
-      display: block;
-      background-color: #e0e0e0;
-    }
-
-    .disease-info {
-      padding: 15px;
-    }
-
-    .disease-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--accent-color);
-      margin-bottom: 8px;
-    }
-
-    .disease-section-title {
-      font-weight: bold;
-      color: var(--primary-color);
-      margin-top: 10px;
-      font-size: 0.95rem;
-    }
-
-    .disease-text {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    /* PROGRAM ZAŠTITE */
     .program-img {
       width: 100%;
       max-width: 100%;
       height: auto;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
       display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .program-img:hover {
+      transform: scale(1.01);
+    }
+
+    .text-muted {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 15px;
     }
   </style>
 </head>
@@ -187,100 +189,30 @@
     <div class="logo">🍇 Moj Vinograd</div>
     <button class="menu-btn" onclick="toggleMenu()">≡ Meni</button>
     <nav class="nav-menu" id="navMenu">
-      <a href="#zastita" class="nav-link" onclick="toggleMenu()">🛡️ Program zaštite</a>
-      <a href="#bolesti" class="nav-link" onclick="toggleMenu()">🦠 Bolesti i štetočine</a>
+      <a href="dnevnik.html" class="nav-link">📖 Dnevnik radova</a>
+      <a href="podsetnik.html" class="nav-link">📅 Podsetnik radova</a>
+      <a href="kalkulator.html" class="nav-link">🧮 Kalkulator prskanja</a>
+      <a href="istorija.html" class="nav-link">📜 Istorija vinograda</a>
+      <a href="index.html" class="nav-link">🛡️ Program zaštite</a>
+      <a href="bolesti.html" class="nav-link">🦠 Bolesti i štetočine</a>
     </nav>
   </header>
 
   <div class="container">
 
-    <!-- SEKCIJA: PROGRAM ZAŠTITE -->
+    <!-- DOBRODOŠLICA / STATUS BANER -->
+    <div class="welcome-card">
+      <h1>🍷 Pregled Vinograda</h1>
+      <p>Evidencija radova, zaštite i nege loze na jednom mestu</p>
+    </div>
+
+    <!-- PROGRAM ZAŠTITE -->
     <div class="card" id="zastita">
-      <h2>🛡️ Program zaštite vinove loze</h2>
-      <p class="disease-text" style="margin-bottom: 15px;">Preporučeni plan prskanja, preparata i doza po fenofazama razvoja vinove loze:</p>
+      <h2>🛡️ Program zaštite</h2>
+      <p class="text-muted">Preporučeni plan prskanja, preparata i doza po fenofazama razvoja vinove loze:</p>
       
       <div style="text-align: center; width: 100%;">
         <img src="program-zastite.jpg" alt="Program zaštite vinove loze" class="program-img">
-      </div>
-    </div>
-
-    <!-- SEKCIJA: BOLESTI VINOVE LOZE -->
-    <div class="card" id="bolesti">
-      <h2>🦠 Bolesti i štetočine vinove loze</h2>
-      
-      <div class="disease-grid">
-        
-        <!-- PEPELNICA -->
-        <div class="disease-card">
-          <img src="pepelnica.jpg" alt="Pepelnica" class="disease-img">
-          <div class="disease-info">
-            <div class="disease-title">1. Pepelnica (Uncinula necator)</div>
-            <p class="disease-text">Jedna od najčešćih i najopasnijih bolesti vinove loze koja značajno utiče na zdravlje biljke, kvalitet i ukupan prinos grožđa.</p>
-            <div class="disease-section-title">Uzroci:</div>
-            <p class="disease-text">Gljivica se razvija u uslovima visoke vlažnosti vazduha i umerenih do visokih temperatura (optimalno 15°C - 25°C). Za razliku od plamenjače, ne zahteva direktne kapi kiše za infekciju.</p>
-            <div class="disease-section-title">Simptomi i štete:</div>
-            <p class="disease-text">Karakteristična bela do pepeljasto-siva puderasta prevlaka javlja se na gornjoj i donjoj strani lišća, mladicama i grozdovima. Inficirani plodovi pucaju, suše se i ostaju deformisani, čime se otvara put i drugim oboljenjima.</p>
-          </div>
-        </div>
-
-        <!-- PLAMENJAČA -->
-        <div class="disease-card">
-          <img src="plamenjaca.jpg" alt="Plamenjača" class="disease-img">
-          <div class="disease-info">
-            <div class="disease-title">2. Plamenjača (Plasmopara viticola)</div>
-            <p class="disease-text">Jedna od najraširenijih bolesti koja uzrokuje izuzetno velike štete na zelenim organima loze i može dovesti do potpunog gubitka roda.</p>
-            <div class="disease-section-title">Uzroci:</div>
-            <p class="disease-text">Gljivica se primarno aktivira i razvija u vlažnim uslovima nakon kišnih perioda, pri temperaturama od 10°C do 30°C (pravilo 10-10-10: 10 mm kiše, 10°C temperatura, lastar 10 cm).</p>
-            <div class="disease-section-title">Simptomi i štete:</div>
-            <p class="disease-text">Na licu lista pojavljuju se prepoznatljive žućkaste "uljane" mrlje, dok se na naličju stvara bela brašnjava prevlaka. Na cvetu i mladim grozdovima izaziva sušenje i potpunu propast roda.</p>
-          </div>
-        </div>
-
-        <!-- SIVA TRULEŽ -->
-        <div class="disease-card">
-          <img src="siva-trulez.jpg" alt="Siva trulež" class="disease-img">
-          <div class="disease-info">
-            <div class="disease-title">3. Siva trulež (Botrytis cinerea)</div>
-            <p class="disease-text">Poznata i kao siva plesan, ova bolest napada grožđe uglavnom pred sam početak zrenja i tokom sazrevanja, direktno ugrožavajući kvalitet šire i vina.</p>
-            <div class="disease-section-title">Uzroci:</div>
-            <p class="disease-text">Bolest se ubrzano širi u uslovima čestih kiša, visoke vlažnosti i umerenih temperatura (15°C - 25°C). Spore se lako prenose vetrom, kapljicama vode ili kroz oštećenja na bobicama (od grada, pepelnice ili insekata).</p>
-            <div class="disease-section-title">Simptomi i štete:</div>
-            <p class="disease-text">Bobice menjaju boju, postaju mekane, vodenaste i prekrivaju se gustim sivo-smeđim plesnivim slojem. Inficirani grozdovi trule, a sok gubi šećere i dobija neprijatan miris.</p>
-          </div>
-        </div>
-
-        <!-- CRNA TRULEŽ -->
-        <div class="disease-card">
-          <img src="crna-trulez.jpg" alt="Crna trulež" class="disease-img">
-          <div class="disease-info">
-            <div class="disease-title">4. Crna trulež (Guignardia bidwellii)</div>
-            <p class="disease-text">Poznata i kao crna plesan ili crni rak vinove loze. Poslednjih godina sve prisutnija bolest koja napada sve zelene delove čokota.</p>
-            <div class="disease-section-title">Uzroci:</div>
-            <p class="disease-text">Spore prezimljavaju u mumičastim grozdovima iz prethodne godine i na zaraženim lastarima. Aktiviraju se rano u proleće i tokom toplih, kišnih perioda.</p>
-            <div class="disease-section-title">Simptomi i štete:</div>
-            <p class="disease-text">Na lišću se uočavaju sitne crne tačkice koje prerastaju u krupnije smeđe mrlje sa tamnim rubom. Na bobicama uzrokuje gubljenje soka, naboranost i mumifikaciju, pri čemu bobice postaju potpuno crne i tvrde.</p>
-          </div>
-        </div>
-
-        <!-- GRINJE VINOVE LOZE -->
-        <div class="disease-card">
-          <img src="grinje.jpg" alt="Grinje vinove loze" class="disease-img">
-          <div class="disease-info">
-            <div class="disease-title">5. Grinje vinove loze</div>
-            <p class="disease-text">Štetočina koja napada pupoljke, lišće, cvet i mlade grozdove. Prezimljuje u pupu ili pukotinama kore, uglavnom bliže starijem kondiru.</p>
-            
-            <div class="disease-section-title">Simptomi i štete:</div>
-            <p class="disease-text">Prve prave štete vidimo pojavom mehurastih izraslina na lisnoj površini koja vremenom požuti ili pocrveni. Iz mehura se vrlo brzo razvije šiška kojom se značajno smanjuje proizvodna sposobnost lista. Pri vrlo jakom napadu, list se lako osuši. Napada takođe cvet i mlade grozdove. Pri jakom napadu lako uništi ceo lastar. Ukoliko je na pupu više od 100 grinja, pup se neće razviti; pri manjem broju izboji budu deformisani, skraćenih žila, cvet se osipa i grozd se ne formira pravilno.</p>
-            
-            <div class="disease-section-title">Zaštita i tretman:</div>
-            <p class="disease-text">• Tokom vegetacije dodati 3-4x sumporne pripravke u smanjenoj koncentraciji (0.3–0.4%).<br>
-            • U slučaju jačeg napada: prskamo 2x sa 2% koncentracijom sumpornog pripravka ili sa 20% sumporno-krečnim pripravcima.<br>
-            • Preporučuje se upotreba mineralnog ulja u koncentraciji od 3%.<br>
-            • Sa akaricidima pričekati par dana radi boljeg delovanja na crvenog voćnog pauka. U vinogradima gde prave velike štete, akaricide koristiti već početkom avgusta (kad se sele u ljuskice pupa).<br>
-            • Od preparata koristiti: Envidor (0.06%), Masai (0.05%), ili akaricide sa aktivnim materijama: abamektin (0.1%), fenazakvin (0.06%) ili piriproksifen (0.05%).</p>
-          </div>
-        </div>
-
       </div>
     </div>
 
