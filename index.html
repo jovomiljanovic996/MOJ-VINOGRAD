@@ -9,11 +9,7 @@
       --primary: #2d5a27;
       --primary-dark: #1e3d1a;
       --accent: #8b263e;
-      --card-bg: rgba(245, 247, 242, 0.93);
-      --card-border: #d4ded0;
-      --text: #1f2d1d;
-      --input-bg: #ffffff;
-      --border: #c2d1bd;
+      --border: #b3c4ae;
     }
 
     * {
@@ -24,10 +20,10 @@
     }
 
     body {
-      background: linear-gradient(rgba(30, 45, 28, 0.55), rgba(30, 45, 28, 0.65)), 
-                  url('IMG_1346.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      color: var(--text);
+      background: #1b2d19 linear-gradient(rgba(20, 35, 18, 0.6), rgba(20, 35, 18, 0.7)), 
+                  url('IMG_1346.jpeg') no-repeat center center fixed !important;
+      background-size: cover !important;
+      color: #1f2d1d;
       line-height: 1.5;
       padding-bottom: 40px;
     }
@@ -63,13 +59,12 @@
     }
 
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background-color: #f1f5ee !important;
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 20px;
       margin-top: 18px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
       overflow: hidden;
     }
 
@@ -110,8 +105,8 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       font-size: 0.95rem;
-      background: var(--input-bg);
-      color: var(--text);
+      background: #ffffff;
+      color: #1f2d1d;
     }
 
     .form-control:focus {
@@ -220,9 +215,10 @@
 
     .disease-img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
       display: block;
+      background-color: #e2e8f0;
     }
 
     .disease-info {
@@ -426,7 +422,7 @@
       
       <div class="disease-grid">
         <div class="disease-card">
-          <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80" alt="Plamenjača" class="disease-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Plasmopara_viticola_01.jpg/640px-Plasmopara_viticola_01.jpg" alt="Plamenjača" class="disease-img">
           <div class="disease-info">
             <div class="disease-title">1. Plamenjača (Plasmopara viticola)</div>
             <p><strong>Simptomi:</strong> "Uljane mrlje" na licu lista, bela prevlaka sa naličja. Bobice se suše i smežuraju.</p>
@@ -434,7 +430,7 @@
         </div>
 
         <div class="disease-card">
-          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="Pepelnica" class="disease-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Erysiphe_necator_01.jpg/640px-Erysiphe_necator_01.jpg" alt="Pepelnica" class="disease-img">
           <div class="disease-info">
             <div class="disease-title">2. Pepelnica (Uncinula necator)</div>
             <p><strong>Simptomi:</strong> Pepeljasta siva prevlaka na svim zelenim delovima. Bobice pucaju skroz do semenke.</p>
@@ -442,7 +438,7 @@
         </div>
 
         <div class="disease-card">
-          <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80" alt="Siva trulež" class="disease-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Botrytis_cinerea_01.jpg/640px-Botrytis_cinerea_01.jpg" alt="Siva trulež" class="disease-img">
           <div class="disease-info">
             <div class="disease-title">3. Siva trulež (Botrytis cinerea)</div>
             <p><strong>Simptomi:</strong> Napada grozdove pred zrenje. Bobice menjaju boju i prekrivaju se sivom plesni.</p>
