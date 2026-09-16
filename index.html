@@ -6,13 +6,14 @@
   <title>Moj Vinograd - Dnevnik & Kalkulator</title>
   <style>
     :root {
-      --primary: #2c5e3b;
-      --primary-dark: #1e4228;
+      --primary: #2d5a27;
+      --primary-dark: #1e3d1a;
       --accent: #8b263e;
-      --bg: #f4f6f8;
-      --card-bg: #ffffff;
-      --text: #2c3e50;
-      --border: #e2e8f0;
+      --card-bg: rgba(245, 247, 242, 0.93);
+      --card-border: #d4ded0;
+      --text: #1f2d1d;
+      --input-bg: #ffffff;
+      --border: #c2d1bd;
     }
 
     * {
@@ -23,8 +24,7 @@
     }
 
     body {
-      /* Prva slika (smokva sa pogledom) kao pozadina cele stranice */
-      background: linear-gradient(rgba(244, 246, 248, 0.88), rgba(244, 246, 248, 0.88)), 
+      background: linear-gradient(rgba(30, 45, 28, 0.55), rgba(30, 45, 28, 0.65)), 
                   url('IMG_1346.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: var(--text);
@@ -32,7 +32,6 @@
       padding-bottom: 40px;
     }
 
-    /* Početno zaglavlje sa trećom slikom (vinograd na padini) */
     .hero {
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), 
                   url('IMG_1348.jpeg');
@@ -41,19 +40,20 @@
       color: white;
       text-align: center;
       padding: 60px 20px 40px;
+      border-bottom: 3px solid var(--primary);
     }
 
     .hero h1 {
       font-size: 2.2rem;
       margin-bottom: 6px;
       font-weight: 700;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
     .hero p {
       font-size: 1rem;
       opacity: 0.95;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
     .container {
@@ -63,31 +63,32 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.94);
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      backdrop-filter: blur(5px);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-top: 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      backdrop-filter: blur(8px);
       overflow: hidden;
     }
 
     .card-banner {
-      width: calc(100% + 36px);
-      height: 180px;
-      margin: -18px -18px 14px -18px;
+      width: calc(100% + 40px);
+      height: 190px;
+      margin: -20px -20px 16px -20px;
       object-fit: cover;
       display: block;
     }
 
     .card h2 {
-      color: var(--primary);
+      color: var(--primary-dark);
       font-size: 1.25rem;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
       gap: 8px;
-      border-bottom: 2px solid #edf2f7;
+      border-bottom: 2px solid var(--border);
       padding-bottom: 8px;
     }
 
@@ -98,9 +99,9 @@
     .form-group label {
       display: block;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
-      color: #4a5568;
+      color: #2e402b;
     }
 
     .form-control {
@@ -109,13 +110,14 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       font-size: 0.95rem;
-      background: #f8fafc;
+      background: var(--input-bg);
+      color: var(--text);
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--primary);
-      background: #fff;
+      box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.2);
     }
 
     .form-row {
@@ -137,28 +139,33 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
       margin-top: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
     .btn:active {
       background: var(--primary-dark);
+      transform: scale(0.99);
     }
 
     .table-container {
       overflow-x: auto;
       margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.88rem;
+      background: #ffffff;
     }
 
     th, td {
       border: 1px solid var(--border);
-      padding: 8px 10px;
+      padding: 9px 10px;
       text-align: left;
     }
 
@@ -169,11 +176,11 @@
     }
 
     tr:nth-child(even) {
-      background-color: rgba(248, 250, 252, 0.8);
+      background-color: #f4f8f3;
     }
 
     .btn-delete {
-      background: #e53e3e;
+      background: #c53030;
       color: white;
       border: none;
       padding: 4px 8px;
@@ -183,13 +190,13 @@
     }
 
     .calc-result {
-      background: #e6fffa;
-      border: 1px solid #b2f5ea;
-      color: #234e52;
+      background: #e6f4ea;
+      border: 1px solid #b2d8b8;
+      color: #1b431e;
       padding: 12px;
       border-radius: 8px;
       margin-top: 12px;
-      font-weight: 600;
+      font-weight: 700;
       text-align: center;
       font-size: 1.05rem;
     }
@@ -202,18 +209,20 @@
     }
 
     .disease-card {
-      background: #f8fafc;
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     .disease-img {
       width: 100%;
-      height: 150px;
+      height: 180px;
       object-fit: cover;
+      display: block;
     }
 
     .disease-info {
@@ -231,7 +240,7 @@
       display: inline-block;
       background: var(--primary);
       color: white;
-      padding: 2px 8px;
+      padding: 3px 9px;
       border-radius: 12px;
       font-size: 0.75rem;
       font-weight: 600;
@@ -240,7 +249,7 @@
 
     .month-item {
       margin-bottom: 12px;
-      padding-bottom: 8px;
+      padding-bottom: 10px;
       border-bottom: 1px dashed var(--border);
     }
 
@@ -252,7 +261,7 @@
 </head>
 <body>
 
-  <!-- Pocetna sekcija (IMG_1348.jpeg) -->
+  <!-- Pocetna sekcija -->
   <div class="hero">
     <h1>🍇 Moj Vinograd</h1>
     <p>Lični priručnik, kalkulator i dnevnik radova</p>
@@ -336,7 +345,7 @@
       </div>
     </div>
 
-    <!-- KALENDAR RADOVA (Druga slika - IMG_1347.jpeg) -->
+    <!-- KALENDAR RADOVA -->
     <div class="card">
       <img src="IMG_1347.jpeg" alt="Moj vinograd redovi" class="card-banner">
       <h2>📅 Kalendar ključnih radova</h2>
@@ -411,13 +420,13 @@
       </div>
     </div>
 
-    <!-- BOLESTI -->
+    <!-- BOLESTI SA SLIKAMA -->
     <div class="card">
       <h2>🛡️ Podsetnik na bolesti i simptome</h2>
       
       <div class="disease-grid">
         <div class="disease-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Plasmopara_viticola_01.jpg/640px-Plasmopara_viticola_01.jpg" alt="Plamenjača" class="disease-img">
+          <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80" alt="Plamenjača" class="disease-img">
           <div class="disease-info">
             <div class="disease-title">1. Plamenjača (Plasmopara viticola)</div>
             <p><strong>Simptomi:</strong> "Uljane mrlje" na licu lista, bela prevlaka sa naličja. Bobice se suše i smežuraju.</p>
@@ -425,7 +434,7 @@
         </div>
 
         <div class="disease-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Uncinula_necator.jpg/640px-Uncinula_necator.jpg" alt="Pepelnica" class="disease-img">
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="Pepelnica" class="disease-img">
           <div class="disease-info">
             <div class="disease-title">2. Pepelnica (Uncinula necator)</div>
             <p><strong>Simptomi:</strong> Pepeljasta siva prevlaka na svim zelenim delovima. Bobice pucaju skroz do semenke.</p>
@@ -433,7 +442,7 @@
         </div>
 
         <div class="disease-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Botrytis_cinerea_on_grapes.jpg/640px-Botrytis_cinerea_on_grapes.jpg" alt="Siva trulež" class="disease-img">
+          <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80" alt="Siva trulež" class="disease-img">
           <div class="disease-info">
             <div class="disease-title">3. Siva trulež (Botrytis cinerea)</div>
             <p><strong>Simptomi:</strong> Napada grozdove pred zrenje. Bobice menjaju boju i prekrivaju se sivom plesni.</p>
@@ -542,7 +551,7 @@
       tabela.innerHTML = '';
 
       if(berbe.length === 0) {
-        tabela.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#a0aec0;">Nema unesenih podataka o berbi</td></tr>';
+        tabela.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#718096;">Nema unesenih podataka o berbi</td></tr>';
         return;
       }
 
