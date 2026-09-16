@@ -1,107 +1,571 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moj Vinograd - Priručnik i Dnevnik</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #f4f6f8; color: #333; line-height: 1.6; }
-        
-        /* Hero sekcija sa slikom */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=1000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moj Vinograd - Dnevnik & Kalkulator</title>
+  <style>
+    :root {
+      --primary: #2c5e3b;
+      --primary-dark: #1e4228;
+      --accent: #8b263e;
+      --bg: #f4f6f8;
+      --card-bg: #ffffff;
+      --text: #2c3e50;
+      --border: #e2e8f0;
+    }
 
-        /* Kontejner i kartice */
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .card h2 { color: #2c5e3b; margin-bottom: 15px; border-bottom: 2px solid #eef2f0; padding-bottom: 8px; font-size: 1.4rem; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-        /* Tabele */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #2c5e3b; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
+    body {
+      /* Prva slika (smokva sa pogledom) kao pozadina cele stranice */
+      background: linear-gradient(rgba(244, 246, 248, 0.88), rgba(244, 246, 248, 0.88)), 
+                  url('IMG_1346.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
 
-        /* Liste bolesti */
-        .disease-item { margin-bottom: 15px; }
-        .disease-title { font-weight: bold; color: #8b0000; font-size: 1.05rem; }
-    </style>
+    /* Početno zaglavlje sa trećom slikom (vinograd na padini) */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), 
+                  url('IMG_1348.jpeg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      opacity: 0.95;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+
+    .card-banner {
+      width: calc(100% + 36px);
+      height: 180px;
+      margin: -18px -18px 14px -18px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card h2 {
+      color: var(--primary);
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #edf2f7;
+      padding-bottom: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #4a5568;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: #f8fafc;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fff;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .btn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 6px;
+    }
+
+    .btn:active {
+      background: var(--primary-dark);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(248, 250, 252, 0.8);
+    }
+
+    .btn-delete {
+      background: #e53e3e;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .calc-result {
+      background: #e6fffa;
+      border: 1px solid #b2f5ea;
+      color: #234e52;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 12px;
+      font-weight: 600;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    .disease-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .disease-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .disease-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .disease-info {
+      padding: 12px;
+    }
+
+    .disease-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .month-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    .month-item {
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .month-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="hero">
-        <h1>🍇 Moj Vinograd</h1>
-        <p>Lični podsetnik, dnevnik zaštite i radova</p>
+  <!-- Pocetna sekcija (IMG_1348.jpeg) -->
+  <div class="hero">
+    <h1>🍇 Moj Vinograd</h1>
+    <p>Lični priručnik, kalkulator i dnevnik radova</p>
+  </div>
+
+  <div class="container">
+
+    <!-- KALKULATOR -->
+    <div class="card">
+      <h2>🧮 Kalkulator doze prskanja</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="vodaLitara">Voda u prskalici (L)</label>
+          <input type="number" id="vodaLitara" class="form-control" placeholder="npr. 10 ili 100" value="10">
+        </div>
+        <div class="form-group">
+          <label for="dozaPropisana">Doza (g ili ml)</label>
+          <input type="number" step="0.1" id="dozaPropisana" class="form-control" placeholder="npr. 20" value="20">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bazaDoze">Preporučena doza se odnosi na:</label>
+        <select id="bazaDoze" class="form-control">
+          <option value="100">100 Litara vode</option>
+          <option value="10">10 Litara vode</option>
+          <option value="1000">1 Hektar (1000L)</option>
+        </select>
+      </div>
+      <button class="btn" onclick="izracunajDozu()">Izračunaj tačnu količinu</button>
+      
+      <div id="rezultatKalkulatora" class="calc-result" style="display: none;">
+        Sipati: <span id="kolicinaPreparata">0</span> g / ml u prskalicu.
+      </div>
     </div>
 
-    <div class="container">
-
-        <!-- SEKCIJA 1: DNEVNIK PRSKANJA -->
-        <div class="card">
-            <h2>🧪 Dnevnik prskanja i zaštite</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Datum</th>
-                        <th>Pretnja / Bolest</th>
-                        <th>Sredstvo / Preparat</th>
-                        <th>Doza</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>15.05.2026.</td>
-                        <td>Plamenjača, Pepelnica</td>
-                        <td>Quadris + Sumpor</td>
-                        <td>20 ml / 10l</td>
-                    </tr>
-                    <tr>
-                        <td>01.06.2026.</td>
-                        <td>Siva trulež (pre cvetanja)</td>
-                        <td>Switch 62.5 WG</td>
-                        <td>10 g / 10l</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- UNOS PRSKANJA -->
+    <div class="card">
+      <h2>✍️ Unos novog prskanja</h2>
+      <form id="prskanjeForm" onsubmit="dodajPrskanje(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="datum">Datum</label>
+            <input type="date" id="datum" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="bolest">Pretnja / Bolest</label>
+            <input type="text" id="bolest" class="form-control" placeholder="Plamenjača..." required>
+          </div>
         </div>
-
-        <!-- SEKCIJA 2: REGISTAR BOLESTI -->
-        <div class="card">
-            <h2>🛡️ Česte bolesti i simptomi</h2>
-            
-            <div class="disease-item">
-                <div class="disease-title">1. Plamenjača (Plasmopara viticola)</div>
-                <p><strong>Simptomi:</strong> "Uljane mrlje" na licu lista, bela prevlaka sa naličja. Bobice suše i smežuraju.</p>
-                <p><strong>Vreme opasnosti:</strong> Toplo i vlažno vreme (maj - jul).</p>
-            </div>
-
-            <div class="disease-item">
-                <div class="disease-title">2. Pepelnica (Uncinula necator)</div>
-                <p><strong>Simptomi:</strong> Pepeljasta siva prevlaka na listovima i bobicama. Bobice pucaju uzduž.</p>
-                <p><strong>Vreme opasnosti:</strong> Suvo i toplo vreme sa visokom vlažnošću vazduha.</p>
-            </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="preparat">Preparat / Sredstvo</label>
+            <input type="text" id="preparat" class="form-control" placeholder="Quadris..." required>
+          </div>
+          <div class="form-group">
+            <label for="doza">Utrošena doza</label>
+            <input type="text" id="doza" class="form-control" placeholder="20ml / 10L" required>
+          </div>
         </div>
-
-        <!-- SEKCIJA 3: EVIDENCIJA RADOVA -->
-        <div class="card">
-            <h2>📅 Kalendar i evidencija radova</h2>
-            <ul>
-                <li><strong>Proleće:</strong> Rezidba na zrelo, vezivanje lukova, prva obrada zemljišta.</li>
-                <li><strong>Leto:</strong> Zalamanje zaperaka, plevljenje, zaštita od bolesti i štetočina.</li>
-                <li><strong>Jesen:</strong> Berba, merenje šećera, đubrenje i priprema za zimu.</li>
-            </ul>
-        </div>
-
+        <button type="submit" class="btn">+ Dodaj u dnevnik</button>
+      </form>
     </div>
 
+    <!-- DNEVNIK PRSKANJA TABELA -->
+    <div class="card">
+      <h2>🧪 Dnevnik zaštite i prskanja</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Bolest</th>
+              <th>Sredstvo</th>
+              <th>Doza</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tabelaPrskanja">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- KALENDAR RADOVA (Druga slika - IMG_1347.jpeg) -->
+    <div class="card">
+      <img src="IMG_1347.jpeg" alt="Moj vinograd redovi" class="card-banner">
+      <h2>📅 Kalendar ključnih radova</h2>
+      
+      <div class="month-item">
+        <span class="month-badge">Januar - Februar</span>
+        <strong>Zimska rezidba:</strong> Rezidba na zrelo, popravka špalira i zatezanje žice.
+      </div>
+      <div class="month-item">
+        <span class="month-badge">Mart - April</span>
+        <strong>Vezivanje lukova:</strong> Savijanje i vezivanje lukova, zaštita na crno pegavost.
+      </div>
+      <div class="month-item">
+        <span class="month-badge">Maj - Jun</span>
+        <strong>Intenzivna zaštita:</strong> Plevljenje zaperaka, podizanje žica, tretmani protiv plamenjače i pepelnice.
+      </div>
+      <div class="month-item">
+        <span class="month-badge">Jul - Avgust</span>
+        <strong>Zalamanje i šišanje:</strong> Zalamanje zaperaka, otkrivanje zone grožđa, zaštita od sive truleži.
+      </div>
+      <div class="month-item">
+        <span class="month-badge">Septembar - Oktobar</span>
+        <strong>Berba:</strong> Merenje šećera i kiselina, određivanje momenta berbe.
+      </div>
+      <div class="month-item">
+        <span class="month-badge">Novembar - Decembar</span>
+        <strong>Jesenja obrada:</strong> Đubrenje organskim/mineralnim đubrivom, zagrtanje mlađih čokota.
+      </div>
+    </div>
+
+    <!-- DNEVNIK BERBE -->
+    <div class="card">
+      <h2>🧺 Dnevnik berbe i kvaliteta</h2>
+      <form id="berbaForm" onsubmit="dodajBerbu(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="datumBerbe">Datum</label>
+            <input type="date" id="datumBerbe" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="kolicinaKg">Količina (kg)</label>
+            <input type="number" id="kolicinaKg" class="form-control" placeholder="npr. 500" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="secer">Šećer (°Oe / Babo)</label>
+            <input type="text" id="secer" class="form-control" placeholder="npr. 21 Babo">
+          </div>
+          <div class="form-group">
+            <label for="kiselina">Kiseline (g/l)</label>
+            <input type="text" id="kiselina" class="form-control" placeholder="npr. 6.5">
+          </div>
+        </div>
+        <button type="submit" class="btn">+ Sačuvaj podatak o berbi</button>
+      </form>
+
+      <div class="table-container" style="margin-top: 15px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Ubrano (kg)</th>
+              <th>Šećer</th>
+              <th>Kiseline</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tabelaBerbe">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BOLESTI -->
+    <div class="card">
+      <h2>🛡️ Podsetnik na bolesti i simptome</h2>
+      
+      <div class="disease-grid">
+        <div class="disease-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Plasmopara_viticola_01.jpg/640px-Plasmopara_viticola_01.jpg" alt="Plamenjača" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">1. Plamenjača (Plasmopara viticola)</div>
+            <p><strong>Simptomi:</strong> "Uljane mrlje" na licu lista, bela prevlaka sa naličja. Bobice se suše i smežuraju.</p>
+          </div>
+        </div>
+
+        <div class="disease-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Uncinula_necator.jpg/640px-Uncinula_necator.jpg" alt="Pepelnica" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">2. Pepelnica (Uncinula necator)</div>
+            <p><strong>Simptomi:</strong> Pepeljasta siva prevlaka na svim zelenim delovima. Bobice pucaju skroz do semenke.</p>
+          </div>
+        </div>
+
+        <div class="disease-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Botrytis_cinerea_on_grapes.jpg/640px-Botrytis_cinerea_on_grapes.jpg" alt="Siva trulež" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">3. Siva trulež (Botrytis cinerea)</div>
+            <p><strong>Simptomi:</strong> Napada grozdove pred zrenje. Bobice menjaju boju i prekrivaju se sivom plesni.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const danas = new Date().toISOString().split('T')[0];
+      document.getElementById('datum').value = danas;
+      document.getElementById('datumBerbe').value = danas;
+
+      ucitajPrskanja();
+      ucitajBerbu();
+    });
+
+    function izracunajDozu() {
+      const voda = parseFloat(document.getElementById('vodaLitara').value) || 0;
+      const doza = parseFloat(document.getElementById('dozaPropisana').value) || 0;
+      const baza = parseFloat(document.getElementById('bazaDoze').value) || 100;
+
+      if(voda > 0 && doza > 0) {
+        const kolicina = (voda * doza) / baza;
+        document.getElementById('kolicinaPreparata').innerText = kolicina.toFixed(2);
+        document.getElementById('rezultatKalkulatora').style.display = 'block';
+      }
+    }
+
+    function dodajPrskanje(e) {
+      e.preventDefault();
+      const datum = document.getElementById('datum').value;
+      const bolest = document.getElementById('bolest').value;
+      const preparat = document.getElementById('preparat').value;
+      const doza = document.getElementById('doza').value;
+
+      const prskanje = { id: Date.now(), datum, bolest, preparat, doza };
+
+      let prskanja = JSON.parse(localStorage.getItem('mojVinogradPrskanja')) || [];
+      prskanja.push(prskanje);
+      localStorage.setItem('mojVinogradPrskanja', JSON.stringify(prskanja));
+
+      document.getElementById('bolest').value = '';
+      document.getElementById('preparat').value = '';
+      document.getElementById('doza').value = '';
+
+      ucitajPrskanja();
+    }
+
+    function ucitajPrskanja() {
+      let prskanja = JSON.parse(localStorage.getItem('mojVinogradPrskanja')) || [
+        { id: 1, datum: '2026-05-15', bolest: 'Plamenjača, Pepelnica', preparat: 'Quadris + Sumpor', doza: '20 ml / 10l' },
+        { id: 2, datum: '2026-06-01', bolest: 'Siva trulež (pre cvetanja)', preparat: 'Switch 62.5 WG', doza: '10 g / 10l' }
+      ];
+
+      const tabela = document.getElementById('tabelaPrskanja');
+      tabela.innerHTML = '';
+
+      prskanja.forEach(p => {
+        const row = `
+          <tr>
+            <td>${p.datum}</td>
+            <td>${p.bolest}</td>
+            <td>${p.preparat}</td>
+            <td>${p.doza}</td>
+            <td><button class="btn-delete" onclick="obrisiPrskanje(${p.id})">✕</button></td>
+          </tr>
+        `;
+        tabela.innerHTML += row;
+      });
+    }
+
+    function obrisiPrskanje(id) {
+      let prskanja = JSON.parse(localStorage.getItem('mojVinogradPrskanja')) || [];
+      prskanja = prskanja.filter(p => p.id !== id);
+      localStorage.setItem('mojVinogradPrskanja', JSON.stringify(prskanja));
+      ucitajPrskanja();
+    }
+
+    function dodajBerbu(e) {
+      e.preventDefault();
+      const datum = document.getElementById('datumBerbe').value;
+      const kolicina = document.getElementById('kolicinaKg').value;
+      const secer = document.getElementById('secer').value || '-';
+      const kiselina = document.getElementById('kiselina').value || '-';
+
+      const stavka = { id: Date.now(), datum, kolicina, secer, kiselina };
+
+      let berbe = JSON.parse(localStorage.getItem('mojVinogradBerbe')) || [];
+      berbe.push(stavka);
+      localStorage.setItem('mojVinogradBerbe', JSON.stringify(berbe));
+
+      document.getElementById('kolicinaKg').value = '';
+      document.getElementById('secer').value = '';
+      document.getElementById('kiselina').value = '';
+
+      ucitajBerbu();
+    }
+
+    function ucitajBerbu() {
+      let berbe = JSON.parse(localStorage.getItem('mojVinogradBerbe')) || [];
+      const tabela = document.getElementById('tabelaBerbe');
+      tabela.innerHTML = '';
+
+      if(berbe.length === 0) {
+        tabela.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#a0aec0;">Nema unesenih podataka o berbi</td></tr>';
+        return;
+      }
+
+      berbe.forEach(b => {
+        const row = `
+          <tr>
+            <td>${b.datum}</td>
+            <td>${b.kolicina} kg</td>
+            <td>${b.secer}</td>
+            <td>${b.kiselina}</td>
+            <td><button class="btn-delete" onclick="obrisiBerbu(${b.id})">✕</button></td>
+          </tr>
+        `;
+        tabela.innerHTML += row;
+      });
+    }
+
+    function obrisiBerbu(id) {
+      let berbe = JSON.parse(localStorage.getItem('mojVinogradBerbe')) || [];
+      berbe = berbe.filter(b => b.id !== id);
+      localStorage.setItem('mojVinogradBerbe', JSON.stringify(berbe));
+      ucitajBerbu();
+    }
+  </script>
 </body>
 </html>
