@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moj Vinograd - Priručnik i Dnevnik</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #f4f6f8; color: #333; line-height: 1.6; }
+        
+        /* Hero sekcija sa slikom */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* Kontejner i kartice */
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .card h2 { color: #2c5e3b; margin-bottom: 15px; border-bottom: 2px solid #eef2f0; padding-bottom: 8px; font-size: 1.4rem; }
+
+        /* Tabele */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #2c5e3b; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* Liste bolesti */
+        .disease-item { margin-bottom: 15px; }
+        .disease-title { font-weight: bold; color: #8b0000; font-size: 1.05rem; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>🍇 Moj Vinograd</h1>
+        <p>Lični podsetnik, dnevnik zaštite i radova</p>
+    </div>
+
+    <div class="container">
+
+        <!-- SEKCIJA 1: DNEVNIK PRSKANJA -->
+        <div class="card">
+            <h2>🧪 Dnevnik prskanja i zaštite</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Pretnja / Bolest</th>
+                        <th>Sredstvo / Preparat</th>
+                        <th>Doza</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15.05.2026.</td>
+                        <td>Plamenjača, Pepelnica</td>
+                        <td>Quadris + Sumpor</td>
+                        <td>20 ml / 10l</td>
+                    </tr>
+                    <tr>
+                        <td>01.06.2026.</td>
+                        <td>Siva trulež (pre cvetanja)</td>
+                        <td>Switch 62.5 WG</td>
+                        <td>10 g / 10l</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SEKCIJA 2: REGISTAR BOLESTI -->
+        <div class="card">
+            <h2>🛡️ Česte bolesti i simptomi</h2>
+            
+            <div class="disease-item">
+                <div class="disease-title">1. Plamenjača (Plasmopara viticola)</div>
+                <p><strong>Simptomi:</strong> "Uljane mrlje" na licu lista, bela prevlaka sa naličja. Bobice suše i smežuraju.</p>
+                <p><strong>Vreme opasnosti:</strong> Toplo i vlažno vreme (maj - jul).</p>
+            </div>
+
+            <div class="disease-item">
+                <div class="disease-title">2. Pepelnica (Uncinula necator)</div>
+                <p><strong>Simptomi:</strong> Pepeljasta siva prevlaka na listovima i bobicama. Bobice pucaju uzduž.</p>
+                <p><strong>Vreme opasnosti:</strong> Suvo i toplo vreme sa visokom vlažnošću vazduha.</p>
+            </div>
+        </div>
+
+        <!-- SEKCIJA 3: EVIDENCIJA RADOVA -->
+        <div class="card">
+            <h2>📅 Kalendar i evidencija radova</h2>
+            <ul>
+                <li><strong>Proleće:</strong> Rezidba na zrelo, vezivanje lukova, prva obrada zemljišta.</li>
+                <li><strong>Leto:</strong> Zalamanje zaperaka, plevljenje, zaštita od bolesti i štetočina.</li>
+                <li><strong>Jesen:</strong> Berba, merenje šećera, đubrenje i priprema za zimu.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
