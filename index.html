@@ -1,192 +1,561 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moj Vinograd</title>
-    <style>
-        /* Osnovni stilovi i pozadinska slika */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('pozadina.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moj Vinograd</title>
+  <style>
+    :root {
+      --primary-color: #2c4a2e;
+      --accent-color: #8b263e;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --text-color: #2b2b2b;
+      --text-muted: #444444;
+      --border-radius: 16px;
+    }
 
-        /* Dugme za otvaranje / zatvaranje padajućeg menija */
-        .menu-btn {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            background-color: rgba(46, 125, 50, 0.9);
-            color: white;
-            border: none;
-            padding: 12px 18px;
-            font-size: 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
 
-        /* Padajući meni (Dropdown Navigation) */
-        .dropdown-menu {
-            display: none;
-            position: fixed;
-            top: 60px;
-            right: 15px;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
-            width: 250px;
-            z-index: 999;
-            overflow: hidden;
-        }
+    body {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('pozadina.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
 
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 16px;
-            color: #2e7d32;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-        }
+    /* TEKST NA POČETNOJ STRANI */
+    .hero-title {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ffffff;
+      text-align: center;
+      z-index: 10;
+      width: 90%;
+      max-width: 600px;
+      pointer-events: none;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.85);
+    }
 
-        .dropdown-menu a:hover {
-            background-color: #f1f1f1;
-        }
+    .hero-title h1 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
 
-        /* Glavni kontejner za prikaz sadržaja */
-        .content-container {
-            display: none;
-            max-width: 800px;
-            margin: 80px auto 30px auto;
-            background: rgba(255, 255, 255, 0.92);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+    .hero-title .ampersand {
+      font-size: 1.6rem;
+      display: block;
+      margin: 6px 0;
+      font-style: italic;
+      font-family: 'Georgia', serif;
+      opacity: 0.9;
+    }
 
-        /* Dugmad za navigaciju unutar sadržaja (Nazad / Početna) */
-        .nav-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+    .hero-title .subname {
+      font-size: 2.6rem;
+      color: #f4e8c1;
+      letter-spacing: 5px;
+      margin-top: 4px;
+    }
 
-        .action-btn {
-            background-color: #2e7d32;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+    /* HEADER & MENU BUTTON */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 15px 20px;
+      z-index: 1000;
+      display: flex;
+      justify-content: flex-end;
+    }
 
-        .action-btn:hover {
-            background-color: #1b5e20;
-        }
+    .menu-btn {
+      background-color: rgba(44, 74, 46, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
 
-        /* Stil za slike u sekcijama */
-        .responsive-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
+    /* PADAJUĆI MENI */
+    .dropdown-menu {
+      display: none;
+      position: fixed;
+      top: 65px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      width: 280px;
+      max-height: 80vh;
+      overflow-y: auto;
+      flex-direction: column;
+      z-index: 999;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
 
-        .section {
-            display: none;
-        }
-    </style>
+    .dropdown-menu.active {
+      display: flex;
+    }
+
+    .dropdown-menu a {
+      padding: 12px 18px;
+      color: var(--text-color);
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      font-weight: 600;
+      cursor: pointer;
+      display: block;
+    }
+
+    .dropdown-menu a.sub-link {
+      padding-left: 35px;
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: var(--text-muted);
+      background-color: #f9fbf9;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #eaf2ea;
+      color: var(--primary-color);
+    }
+
+    .home-link {
+      background-color: #eaf2ea;
+      color: var(--primary-color) !important;
+    }
+
+    /* MAIN CONTAINER ZA SADRŽAJ */
+    .container {
+      display: none;
+      max-width: 850px;
+      margin: 75px auto 25px auto;
+      padding: 0 15px;
+    }
+
+    .page-nav-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--border-radius);
+      padding: 22px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      border-bottom: 2px solid #e8eee8;
+      padding-bottom: 8px;
+    }
+
+    .section-block {
+      display: none;
+    }
+
+    /* KALKULATOR FORM */
+    .calc-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .calc-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .calc-result {
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #eaf2ea;
+      border-radius: 8px;
+      font-weight: bold;
+      color: var(--primary-color);
+      display: none;
+    }
+
+    .responsive-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      object-fit: cover;
+    }
+
+    .disease-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 8px;
+    }
+
+    .disease-section-title {
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-top: 12px;
+      font-size: 0.98rem;
+    }
+
+    .disease-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .history-subtitle {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-top: 10px;
+      margin-bottom: 8px;
+    }
+
+    .history-text {
+      font-size: 0.98rem;
+      color: var(--text-color);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .history-quote {
+      font-style: italic;
+      color: var(--primary-color);
+      font-weight: 600;
+      background: #f0f4f0;
+      padding: 12px 16px;
+      border-left: 4px solid var(--primary-color);
+      border-radius: 4px;
+      margin-top: 15px;
+    }
+
+    .founder-box {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .founder-img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .founder-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    .founder-quote {
+      font-size: 1.05rem;
+      color: var(--text-color);
+      line-height: 1.8;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Dugme za meni -->
-    <button class="menu-btn" onclick="toggleMenu()">☰ Meni</button>
+  <!-- TEKST KOJI STOJI NA POČETNOJ STRANI OVER LAID NA SLICI -->
+  <div class="hero-title" id="heroTitle">
+    <h1>
+      VINOGRAD
+      <span class="ampersand">I</span>
+      PODRUM
+      <div class="subname">ĐEDOVINA</div>
+    </h1>
+  </div>
 
-    <!-- Padajući meni -->
-    <div id="dropdownMenu" class="dropdown-menu">
-        <a onclick="showSection('home')">🏠 Početna strana</a>
-        <a onclick="showSection('kalendar')">📅 Kalendar radova</a>
-        <a onclick="showSection('dnevnik')">📖 Dnevnik / Beleške</a>
-        <a onclick="showSection('zastita')">🛡️ Zaštita i Prskanje</a>
+  <header>
+    <button class="menu-btn" onclick="toggleMenu()">≡ Meni</button>
+  </header>
+
+  <!-- PADAJUĆI MENI SA SVIM STAVKAMA -->
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a class="home-link" onclick="openSection('home')">🏠 Početna strana</a>
+    <a onclick="openSection('kalkulator')">🧮 Kalkulator doza</a>
+    <a onclick="openSection('dnevnik-prskanja')">✍️ Dnevnik prskanja</a>
+    <a onclick="openSection('kalendar')">📅 Kalendar radova</a>
+    <a onclick="openSection('dnevnik-berbe')">🧺 Dnevnik berbe</a>
+    
+    <a onclick="openSection('bolesti')">🦠 Bolesti vinove loze:</a>
+    <a class="sub-link" onclick="openSection('pepelnica')">• Pepelnica</a>
+    <a class="sub-link" onclick="openSection('plamenjaca')">• Plamenjača</a>
+    <a class="sub-link" onclick="openSection('siva-trulez')">• Siva trulež</a>
+    <a class="sub-link" onclick="openSection('crna-trulez')">• Crna trulež</a>
+    <a class="sub-link" onclick="openSection('grinje')">• Grinje</a>
+
+    <a onclick="openSection('preparati')">🧪 Preparati</a>
+    <a onclick="openSection('galerija')">🖼️ Galerija</a>
+    <a onclick="openSection('istorija')">📜 Istorija vinograda</a>
+    <a onclick="openSection('osnivac')">👤 Osnivač</a>
+  </div>
+
+  <!-- CONTAINER ZA PRIKAZ SADRŽAJA -->
+  <div class="container" id="mainContainer">
+    
+    <div class="page-nav-controls">
+      <button class="nav-btn" onclick="openSection('home')">← Nazad</button>
+      <button class="nav-btn" onclick="openSection('home')">🏠 Početna strana</button>
     </div>
 
-    <!-- Prikaz sadržaja sekcija -->
-    <div id="contentContainer" class="content-container">
-        
-        <!-- Komandna dugmad unutar sekcije (Nazad & Početna) -->
-        <div class="nav-controls">
-            <button class="action-btn" onclick="goBack()">← Nazad</button>
-            <button class="action-btn" onclick="showSection('home')">🏠 Početna strana</button>
+    <div class="card">
+      
+      <!-- KALKULATOR -->
+      <div class="section-block" id="kalkulator">
+        <h2>🧮 Kalkulator doza (za prskalicu)</h2>
+        <p class="disease-text">Izračunajte potrebnu količinu preparata na osnovu zapremine vode i propisane doze.</p>
+        <div class="calc-form">
+          <div class="form-group">
+            <label for="voda">Količina vode (L):</label>
+            <input type="number" id="voda" placeholder="Npr. 10">
+          </div>
+          <div class="form-group">
+            <label for="doza">Doza na 100L ili u % (npr. 200 ili 0.05):</label>
+            <input type="number" step="0.01" id="doza" placeholder="Npr. 200 ili 0.05">
+          </div>
+          <button class="calc-btn" onclick="izracunajDozu()">Izračunaj</button>
+          <div class="calc-result" id="rezultat"></div>
         </div>
+      </div>
 
-        <!-- Sekcija: Kalendar radova -->
-        <div id="kalendar" class="section">
-            <h2>Kalendar radova</h2>
-            <p>Pregled planiranih aktivnosti i zaštite po mesecima:</p>
-            <!-- Ubacivanje slike program-zastite.jpg -->
-            <img src="program-zastite.jpg" alt="Program zaštite vinograda" class="responsive-img">
-        </div>
+      <!-- DNEVNIK PRSKANJA -->
+      <div class="section-block" id="dnevnik-prskanja">
+        <h2>✍️ Dnevnik prskanja</h2>
+        <p class="disease-text">Unos i evidencija svih obavljenih tretmana zaštite u vinogradu.</p>
+      </div>
 
-        <!-- Sekcija: Dnevnik / Beleške -->
-        <div id="dnevnik" class="section">
-            <h2>Dnevnik radova</h2>
-            <p>Ovde se nalaze zabeležene aktivnosti iz prethodnih perioda.</p>
-        </div>
+      <!-- KALENDAR RADOVA -->
+      <div class="section-block" id="kalendar">
+        <h2>📅 Kalendar radova</h2>
+        <p class="disease-text">Planirane i preporučene aktivnosti po mesecima u toku godine:</p>
+        <img src="program-zastite.jpg" alt="Program zaštite vinograda" class="responsive-img">
+      </div>
 
-        <!-- Sekcija: Zaštita i Prskanje -->
-        <div id="zastita" class="section">
-            <h2>Zaštita i Prskanje</h2>
-            <p>Detaljan pregled sredstava i doziranja za zaštitu loze.</p>
+      <!-- DNEVNIK BERBE -->
+      <div class="section-block" id="dnevnik-berbe">
+        <h2>🧺 Dnevnik berbe</h2>
+        <p class="disease-text">Evidencija količine ubranog grožđa, merenja procenata šećera i kiselina.</p>
+      </div>
+
+      <!-- BOLESTI -->
+      <div class="section-block" id="bolesti">
+        <h2>🦠 Bolesti vinove loze</h2>
+        <p class="disease-text">Izaberite konkretnu bolest iz menija za detalje o simptomima i lečenju.</p>
+      </div>
+
+      <div class="section-block" id="pepelnica">
+        <div class="disease-title">1. Pepelnica (Uncinula necator)</div>
+        <img src="pepelnica.jpg" alt="Pepelnica vinove loze" class="responsive-img">
+        <p class="disease-text" style="margin-top:15px;">Pepelnica je jedna od najčešćih bolesti vinove loze koja može značajno uticati na zdravlje i prinos biljke. Ova gljivična infekcija uzrokuje formiranje belog praha na lišću, mladicama i grozdovima vinove loze.</p>
+        <div class="disease-section-title">Uzroci pepelnice:</div>
+        <p class="disease-text">Pepelnica vinove loze uzrokovana je gljivicom iz roda Uncinula necator. Gljiva se razvija u uslovima visoke vlažnosti, ali se može širiti i u sušnim uslovima s niskom vlagom. Optimalna temperatura za razvoj je između 15°C i 25°C.</p>
+        <div class="disease-section-title">Simptomi pepelnice:</div>
+        <p class="disease-text">Prvi znakovi infekcije su beli puderasti premaz koji se formira na površini lišća. Dok bolest napreduje, listovi mogu promeniti boju, postati žuti, a zatim se osušiti i otpasti.</p>
+      </div>
+
+      <div class="section-block" id="plamenjaca">
+        <div class="disease-title">2. Plamenjača (Plasmopara viticola)</div>
+        <img src="plamenjaca.jpg" alt="Plamenjača vinove loze" class="responsive-img">
+        <p class="disease-text" style="margin-top:15px;">Plamenjača je jedna od najraširenijih bolesti vinove loze, koja može prouzrokovati ozbiljne štete na biljkama i smanjiti prinos grožđa.</p>
+        <div class="disease-section-title">Uzroci plamenjače:</div>
+        <p class="disease-text">Izaziva je gljivica Plasmopara viticola. Gljiva se razvija u vlažnim uslovima, posebno kada je temperatura između 10°C i 30°C.</p>
+        <div class="disease-section-title">Simptomi plamenjače:</div>
+        <p class="disease-text">Na početku se javljaju žute mrlje na lišću, praćene beličastim premazom na donjoj strani lista.</p>
+      </div>
+
+      <div class="section-block" id="siva-trulez">
+        <div class="disease-title">3. Siva trulež (Botrytis cinerea)</div>
+        <img src="siva-trulez.jpg" alt="Siva trulež vinove loze" class="responsive-img">
+        <p class="disease-text" style="margin-top:15px;">Siva trulež uzrokovana je gljivicom Botrytis cinerea koja može naneti značajne štete grožđu pred berbu.</p>
+        <div class="disease-section-title">Simptomi:</div>
+        <p class="disease-text">Na zaraženim grozdovima javlja se sivo-smeđa plesniva prevlaka koja pogađa bobice, čineći ih mekanim i trulim.</p>
+      </div>
+
+      <div class="section-block" id="crna-trulez">
+        <div class="disease-title">4. Crna trulež (Guignardia bidwellii)</div>
+        <img src="crna-trulez.jpg" alt="Crna trulež vinove loze" class="responsive-img">
+        <p class="disease-text" style="margin-top:15px;">Gljivična bolest poznata i pod nazivom crna plesan ili crni rak.</p>
+        <div class="disease-section-title">Simptomi:</div>
+        <p class="disease-text">Sitne crne tačkice na površini lišća koje se šire. Na grozdovima bobice postaju meke, trule i gube sok.</p>
+      </div>
+
+      <div class="section-block" id="grinje">
+        <div class="disease-title">5. Grinje vinove loze</div>
+        <img src="grinje.jpg" alt="Grinje vinove loze" class="responsive-img">
+        <p class="disease-text" style="margin-top:15px;">Štetočine koje prezimljavaju u pupu i rano u proleće oštećuju mlade izbojke.</p>
+        <div class="disease-section-title">Simptomi i zaštita:</div>
+        <p class="disease-text">Mehuraste izrasline na listu. Tretira se preparatima na bazi sumpora.</p>
+      </div>
+
+      <!-- PREPARATI -->
+      <div class="section-block" id="preparati">
+        <h2>🧪 Preparati</h2>
+        <p class="disease-text">Baza podataka o fungicidima, insekticidima, mikrobiološkim i prihranjivačkim preparatima.</p>
+      </div>
+
+      <!-- GALERIJA -->
+      <div class="section-block" id="galerija">
+        <h2>🖼️ Galerija</h2>
+        <p class="disease-text">Slike vinograda, faza napredovanja loze i radova kroz godine.</p>
+      </div>
+
+      <!-- ISTORIJA -->
+      <div class="section-block" id="istorija">
+        <h2>📜 Istorija vinograda</h2>
+        <div class="history-subtitle">OD PRVIH ČOKOTA DO PODRUMA ĐEDOVINA</div>
+        <p class="history-text"><i>Priča o Miloradu Miljanoviću i vinogradu koji je postao porodična tradicija.</i></p>
+        <div class="disease-section-title">🌱 Sve je počelo 2005. godine, na padinama Majevice</div>
+        <p class="history-text">Naš otac, <b>Milorad Miljanović</b>, iz ljubavi prema zemlji i iz čistog hobija zasadio je svojih prvih 200 čokota vinove loze. Među prvim zasadima našle su se različite sorte stonog i vinskog grožđa: <i>Smederevka, Italija, Ribijer, Drenjak, Kardinal, Afus Ali i Frankovka</i>.</p>
+        <div class="disease-section-title">🌿 Proširenje 2010. godine</div>
+        <p class="history-text">Zasadio je još oko 1.000 čokota, ovog puta pretežno Frankovke i Belog Burgundca.</p>
+        <div class="disease-section-title">🍇 2023. godina – nova odluka</div>
+        <p class="history-text">Odlučio sam da se ozbiljnije posvetim vinogradu, orezivanju i modernoj zaštiti.</p>
+        <div class="history-quote">
+          "Jer vinograd nije samo ono što smo naslijedili.<br>Vinograd je i ono što ostavljamo iza sebe."
         </div>
+      </div>
+
+      <!-- OSNIVAČ -->
+      <div class="section-block" id="osnivac">
+        <h2>👤 Osnivač</h2>
+        <div class="founder-box">
+          <img src="milorad.jpg" alt="Milorad Miljanović" class="founder-img">
+          <div class="founder-name">Milorad Miljanović</div>
+          <p class="founder-quote">
+            Čovjek od kojeg je sve počelo.<br>
+            Jedan čokot zasadio je iz ljubavi.<br>
+            Mi danas nastavljamo priču koju je započeo.
+          </p>
+        </div>
+      </div>
 
     </div>
+  </div>
 
-    <script>
-        // Otvaranje / Zatvaranje padajućeg menija
-        function toggleMenu() {
-            var menu = document.getElementById("dropdownMenu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.classList.toggle('active');
+    }
 
-        // Prikaz izabrane sekcije
-        function showSection(sectionId) {
-            // Zatvori padajući meni
-            document.getElementById("dropdownMenu").style.display = "none";
+    function openSection(sectionId) {
+      document.getElementById('dropdownMenu').classList.remove('active');
 
-            var container = document.getElementById("contentContainer");
-            var sections = document.querySelectorAll(".section");
+      const container = document.getElementById('mainContainer');
+      const blocks = document.querySelectorAll('.section-block');
+      const heroTitle = document.getElementById('heroTitle');
 
-            // Ako se izabere Početna strana, sakrij sav sadržaj i prikaži samo pozadinu
-            if (sectionId === 'home') {
-                container.style.display = "none";
-                sections.forEach(sec => sec.style.display = "none");
-                return;
-            }
+      if (sectionId === 'home') {
+        container.style.display = 'none';
+        blocks.forEach(b => b.style.display = 'none');
+        heroTitle.style.display = 'block'; // Prikaži naslov na početnoj
+        window.scrollTo(0, 0);
+        return;
+      }
 
-            // Sakrij sve pojedinačne sekcije
-            sections.forEach(sec => sec.style.display = "none");
+      heroTitle.style.display = 'none'; // Sakrij naslov kad je otvorena sekcija
+      blocks.forEach(b => b.style.display = 'none');
 
-            // Prikaži glavne kontejner i odabranu sekciju
-            container.style.display = "block";
-            var activeSection = document.getElementById(sectionId);
-            if (activeSection) {
-                activeSection.style.display = "block";
-            }
-        }
+      container.style.display = 'block';
+      const selectedBlock = document.getElementById(sectionId);
+      if (selectedBlock) {
+        selectedBlock.style.display = 'block';
+      }
+      window.scrollTo(0, 0);
+    }
 
-        // Dugme za povratak unazad (zatvara trenutno otvorenu sekciju i vraća na početnu)
-        function goBack() {
-            showSection('home');
-        }
-    </script>
+    function izracunajDozu() {
+      const voda = parseFloat(document.getElementById('voda').value);
+      const doza = parseFloat(document.getElementById('doza').value);
+      const rezultat = document.getElementById('rezultat');
 
+      if (isNaN(voda) || isNaN(doza)) {
+        rezultat.style.display = 'block';
+        rezultat.innerText = 'Molimo unesite ispravne brojeve.';
+        return;
+      }
+
+      let kolicina;
+      if (doza < 1) {
+        kolicina = (voda * doza * 10).toFixed(2);
+      } else {
+        kolicina = ((voda * doza) / 100).toFixed(2);
+      }
+
+      rezultat.innerText = `Potrebno je: ${kolicina} ml (ili g) preparata za ${voda}L vode.`;
+      rezultat.style.display = 'block';
+    }
+  </script>
 </body>
 </html>
