@@ -10,7 +10,7 @@
       --accent-color: #8b263e;
       --card-bg: rgba(255, 255, 255, 0.92);
       --text-color: #2b2b2b;
-      --text-muted: #555555;
+      --text-muted: #444444;
       --border-radius: 16px;
     }
 
@@ -22,7 +22,6 @@
     }
 
     body {
-      /* Slika pozadine sa blagim prelivom za lepši kontrast */
       background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('pozadina.jpg');
       background-size: cover;
       background-position: center;
@@ -56,7 +55,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      letter-spacing: 0.5px;
     }
 
     .menu-btn {
@@ -83,8 +81,9 @@
       backdrop-filter: blur(10px);
       border-radius: var(--border-radius);
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      width: 240px;
-      overflow: hidden;
+      width: 270px;
+      max-height: 80vh;
+      overflow-y: auto;
       flex-direction: column;
       margin-top: 8px;
     }
@@ -94,12 +93,27 @@
     }
 
     .nav-link {
-      padding: 14px 20px;
+      padding: 12px 18px;
       color: var(--text-color);
       text-decoration: none;
       border-bottom: 1px solid #eee;
       font-weight: 500;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s;
+    }
+
+    .nav-link-sub {
+      padding: 8px 18px 8px 35px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      background-color: #f9fbf9;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      display: block;
+    }
+
+    .nav-link-sub:hover {
+      background-color: #eaf2ea;
+      color: var(--primary-color);
     }
 
     .nav-link:last-child {
@@ -135,11 +149,6 @@
       margin-bottom: 5px;
     }
 
-    .welcome-card p {
-      font-size: 0.95rem;
-      opacity: 0.9;
-    }
-
     .card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -157,29 +166,157 @@
       font-size: 1.4rem;
       border-bottom: 2px solid #e8eee8;
       padding-bottom: 8px;
+    }
+
+    /* FORM FOR CALCULATOR */
+    .calc-form {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
     }
 
-    .program-img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .calc-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .calc-result {
+      margin-top: 10px;
+      padding: 12px;
+      background-color: #eaf2ea;
+      border-radius: 8px;
+      font-weight: bold;
+      color: var(--primary-color);
+      display: none;
+    }
+
+    /* DISEASE CARDS */
+    .disease-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .disease-card {
+      background: #ffffff;
+      border: 1px solid #e2e8e2;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      scroll-margin-top: 80px;
+    }
+
+    .disease-img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
       display: block;
-      transition: transform 0.2s ease;
     }
 
-    .program-img:hover {
-      transform: scale(1.01);
+    .disease-info {
+      padding: 18px;
     }
 
-    .text-muted {
+    .disease-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 5px;
+    }
+
+    .disease-section-title {
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-top: 12px;
+      font-size: 0.98rem;
+    }
+
+    .disease-text {
       font-size: 0.95rem;
       color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ISTORIJA STYLING */
+    .history-subtitle {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .history-text {
+      font-size: 0.98rem;
+      color: var(--text-color);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .history-quote {
+      font-style: italic;
+      color: var(--primary-color);
+      font-weight: 600;
+      background: #f0f4f0;
+      padding: 12px 16px;
+      border-left: 4px solid var(--primary-color);
+      border-radius: 4px;
+      margin-top: 15px;
+    }
+
+    /* OSNIVAČ STYLING */
+    .founder-box {
+      text-align: center;
+      padding: 20px 15px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e2e8e2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .founder-img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 12px;
       margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      object-fit: cover;
+    }
+
+    .founder-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    .founder-quote {
+      font-size: 1.05rem;
+      color: var(--text-color);
+      line-height: 1.8;
+      font-style: italic;
     }
   </style>
 </head>
@@ -189,30 +326,206 @@
     <div class="logo">🍇 Moj Vinograd</div>
     <button class="menu-btn" onclick="toggleMenu()">≡ Meni</button>
     <nav class="nav-menu" id="navMenu">
-      <a href="dnevnik.html" class="nav-link">📖 Dnevnik radova</a>
-      <a href="podsetnik.html" class="nav-link">📅 Podsetnik radova</a>
-      <a href="kalkulator.html" class="nav-link">🧮 Kalkulator prskanja</a>
-      <a href="istorija.html" class="nav-link">📜 Istorija vinograda</a>
-      <a href="index.html" class="nav-link">🛡️ Program zaštite</a>
-      <a href="bolesti.html" class="nav-link">🦠 Bolesti i štetočine</a>
+      <a href="#kalkulator" class="nav-link" onclick="toggleMenu()">🧮 Kalkulator doza</a>
+      <a href="#dnevnik-prskanja" class="nav-link" onclick="toggleMenu()">✍️ Dnevnik prskanja</a>
+      <a href="#kalendar" class="nav-link" onclick="toggleMenu()">📅 Kalendar radova</a>
+      <a href="#dnevnik-berbe" class="nav-link" onclick="toggleMenu()">🧺 Dnevnik berbe</a>
+      
+      <a href="#bolesti" class="nav-link" onclick="toggleMenu()">🦠 Bolesti vinove loze:</a>
+      <a href="#pepelnica" class="nav-link-sub" onclick="toggleMenu()">• Pepelnica</a>
+      <a href="#plamenjaca" class="nav-link-sub" onclick="toggleMenu()">• Plamenjača</a>
+      <a href="#siva-trulez" class="nav-link-sub" onclick="toggleMenu()">• Siva trulež</a>
+      <a href="#crna-trulez" class="nav-link-sub" onclick="toggleMenu()">• Crna trulež</a>
+      <a href="#grinje" class="nav-link-sub" onclick="toggleMenu()">• Grinje</a>
+
+      <a href="#preparati" class="nav-link" onclick="toggleMenu()">🧪 Preparati</a>
+      <a href="#galerija" class="nav-link" onclick="toggleMenu()">🖼️ Galerija</a>
+      <a href="#istorija" class="nav-link" onclick="toggleMenu()">📜 Istorija vinograda</a>
+      <a href="#osnivac" class="nav-link" onclick="toggleMenu()">👤 Osnivač</a>
     </nav>
   </header>
 
   <div class="container">
 
-    <!-- DOBRODOŠLICA / STATUS BANER -->
     <div class="welcome-card">
       <h1>🍷 Pregled Vinograda</h1>
       <p>Evidencija radova, zaštite i nege loze na jednom mestu</p>
     </div>
 
-    <!-- PROGRAM ZAŠTITE -->
-    <div class="card" id="zastita">
-      <h2>🛡️ Program zaštite</h2>
-      <p class="text-muted">Preporučeni plan prskanja, preparata i doza po fenofazama razvoja vinove loze:</p>
+    <!-- 1. KALKULATOR DOZA -->
+    <div class="card" id="kalkulator">
+      <h2>🧮 Kalkulator doza (za prskalicu)</h2>
+      <p class="disease-text">Izračunajte potrebnu količinu preparata na osnovu zapremine vode i propisane doze.</p>
       
-      <div style="text-align: center; width: 100%;">
-        <img src="program-zastite.jpg" alt="Program zaštite vinove loze" class="program-img">
+      <div class="calc-form">
+        <div class="form-group">
+          <label for="voda">Količina vode (L):</label>
+          <input type="number" id="voda" placeholder="Npr. 10">
+        </div>
+        <div class="form-group">
+          <label for="doza">Doza na 100L ili u % (npr. 200 ili 0.05):</label>
+          <input type="number" step="0.01" id="doza" placeholder="Npr. 200 ili 0.05">
+        </div>
+        <button class="calc-btn" onclick="izracunajDozu()">Izračunaj</button>
+        <div class="calc-result" id="rezultat"></div>
+      </div>
+    </div>
+
+    <!-- 2. DNEVNIK PRSKANJA -->
+    <div class="card" id="dnevnik-prskanja">
+      <h2>✍️ Dnevnik prskanja</h2>
+      <p class="disease-text">Unos i evidencija svih obavljenih tretmana zaštite u vinogradu.</p>
+    </div>
+
+    <!-- 3. KALENDAR RADOVA -->
+    <div class="card" id="kalendar">
+      <h2>📅 Kalendar radova</h2>
+      <p class="disease-text">Planirane i preporučene aktivnosti po mesecima u toku godine.</p>
+    </div>
+
+    <!-- 4. DNEVNIK BERBE -->
+    <div class="card" id="dnevnik-berbe">
+      <h2>🧺 Dnevnik berbe</h2>
+      <p class="disease-text">Evidencija količine ubranog grožđa, merenja procenata šećera i kiselina.</p>
+    </div>
+
+    <!-- 5. BOLESTI VINOVE LOZE -->
+    <div class="card" id="bolesti">
+      <h2>🦠 Bolesti vinove loze</h2>
+      
+      <div class="disease-grid">
+        
+        <!-- PEPELNICA -->
+        <div class="disease-card" id="pepelnica">
+          <img src="pepelnica.jpg" alt="Pepelnica vinove loze" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">1. Pepelnica (Uncinula necator)</div>
+            <p class="disease-text">Pepelnica je jedna od najčešćih bolesti vinove loze koja može značajno uticati na zdravlje i prinos biljke. Ova gljivična infekcija uzrokuje formiranje belog praha na lišću, mladicama i grozdovima vinove loze. Kao vinogradar, važno je da razumete uzroke, simptome i metode prevencije pepelnice kako biste održali vaše biljke zdravim i produktivnim.</p>
+            
+            <div class="disease-section-title">Uzroci pepelnice:</div>
+            <p class="disease-text">Pepelnica vinove loze uzrokovana je gljivicom iz roda Uncinula necator. Gljiva se razvija u uslovima visoke vlažnosti, ali se može širiti i u sušnim uslovima s niskom vlagom. Optimalna temperatura za razvoj pepelnice je između 15°C i 25°C. Biljke koje su već oslabljene, loše održavane ili podložne stresu, imaju veću verovatnoću da će biti zaražene.</p>
+            
+            <div class="disease-section-title">Simptomi pepelnice:</div>
+            <p class="disease-text">Simptomi pepelnice su vidljivi na lišću, mladicama i grozdovima vinove loze. Prvi znakovi infekcije su beli puderasti premaz koji se formira na površini lišća. Ovaj premaz može se proširiti na mladice, izbojke i čak na grozdove. Dok bolest napreduje, listovi mogu promeniti boju, postati žuti, a zatim se osušiti i otpasti. Zaraženi grozdovi često gube kvalitet i mogu propasti. Pepelnica može smanjiti prinos grožđa i uticati na ukupnu vitalnost biljaka.</p>
+          </div>
+        </div>
+
+        <!-- PLAMENJAČA -->
+        <div class="disease-card" id="plamenjaca">
+          <img src="plamenjaca.jpg" alt="Plamenjača vinove loze" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">2. Plamenjača (Plasmopara viticola)</div>
+            <p class="disease-text">Plamenjača je jedna od najraširenijih bolesti vinove loze, koja može prouzrokovati ozbiljne štete na biljkama i smanjiti prinos grožđa. Ova gljivična bolest predstavlja veliki izazov za vinogradare širom sveta.</p>
+            
+            <div class="disease-section-title">Uzroci plamenjače:</div>
+            <p class="disease-text">Plamenjaču vinove loze izaziva gljivica iz roda Plasmopara viticola. Gljiva se razvija u vlažnim uslovima, posebno kada je temperatura između 10°C i 30°C. Kišni periodi i visoka vlažnost doprinose širenju ove bolesti. Infekcija se obično javlja kada spore gljivice dospeju na vlažnu površinu lišća ili grozdova.</p>
+            
+            <div class="disease-section-title">Simptomi plamenjače:</div>
+            <p class="disease-text">Simptomi se mogu primetiti na lišću, mladicama i grozdovima. Na početku infekcije javlja se pojava žutih mrlja na lišću, praćena formiranjem beličastog premaza na donjoj strani lista. Ovi simptomi se kasnije šire na gornju stranu lista, formirajući smeđe mrlje. Zaraženi listovi mogu se deformisati i opadati. U težim slučajevima, plamenjača može uticati na grozdove, uzrokujući propadanje plodova i gubitak kvaliteta.</p>
+          </div>
+        </div>
+
+        <!-- SIVA TRULEŽ -->
+        <div class="disease-card" id="siva-trulez">
+          <img src="siva-trulez.jpg" alt="Siva trulež vinove loze" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">3. Siva trulež (Botrytis cinerea)</div>
+            <p class="disease-text">Siva trulež je jedna od najčešćih gljivičnih bolesti vinove loze koja može naneti značajne štete vinogradima i uticati na kvalitet grožđa. Ova bolest, koja je takođe poznata kao siva plesan, uzrokovana je gljivicom Botrytis cinerea.</p>
+            
+            <div class="disease-section-title">Uzroci sive truleži:</div>
+            <p class="disease-text">Gljivica Botrytis cinerea može preživeti u tlu i na biljnim ostacima tokom zime. U proleće gljiva proizvodi spore koje se šire vetrom ili vodom. Infekcija se najčešće javlja u vlažnim uslovima, pri temperaturama između 15°C i 25°C. Oštećene ili povređene bobice, površinski oštećeni grozdovi i guste vegetativne površine povećavaju rizik od infekcije.</p>
+            
+            <div class="disease-section-title">Simptomi sive truleži:</div>
+            <p class="disease-text">Simptomi se primećuju na grozdovima, lišću i mladicama. Na zaraženim grozdovima javlja se sivo-smeđa plesniva prevlaka koja može zahvatiti pojedinačne bobice ili se širiti na ceo grozd. Pogođene bobice postaju mekane, trule, a zatim se mogu sušiti ili pretvoriti u suvo mumificirano stanje. Lišće i mladice mogu pokazivati smeđe mrlje i plesnivu prevlaku, te opadati ili se deformisati.</p>
+          </div>
+        </div>
+
+        <!-- CRNA TRULEŽ -->
+        <div class="disease-card" id="crna-trulez">
+          <img src="crna-trulez.jpg" alt="Crna trulež vinove loze" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">4. Crna trulež (Guignardia bidwellii)</div>
+            <p class="disease-text">Crna trulež je jedna od ozbiljnih gljivičnih bolesti vinove loze koja može naneti značajne štete vinogradima i uticati na prinos i kvalitet grožđa. Poznata je i pod nazivom crna plesan ili crni rak.</p>
+            
+            <div class="disease-section-title">Uzroci crne truleži:</div>
+            <p class="disease-text">Gljivica Guignardia bidwellii preživljava zimu u zaraženim biljnim ostacima na tlu ili u vinogradu. Infekcija se obično javlja u proleće ili rano leto, kada se aktiviraju spore gljivice pod uticajem vlažnosti i kiše. Oštećovanja na lišću ili grozdovima (poput povreda od grada ili insekata) stvaraju izuzetno povoljne uslove za infekciju.</p>
+            
+            <div class="disease-section-title">Simptomi crne truleži:</div>
+            <p class="disease-text">Prvi znaci uključuju pojavu sitnih crnih tačkica na površini lišća koje se zatim šire i spajaju. Mrlje mogu postati smeđe ili crne boje, a zahvaćeno lišće opada. Na grozdovima se pojavljuju crne pege koje se šire i formiraju plesnivu prevlaku. Pogođene bobice postaju meke, trule i gube sok. U težim slučajevima grozdovi potpuno propadaju i postaju neprikladni za berbu.</p>
+          </div>
+        </div>
+
+        <!-- GRINJE -->
+        <div class="disease-card" id="grinje">
+          <img src="grinje.jpg" alt="Grinje vinove loze" class="disease-img">
+          <div class="disease-info">
+            <div class="disease-title">5. Grinje vinove loze</div>
+            <p class="disease-text">Grinje su opasne štetočine koje prezimljavaju u pupu ili u pukotinama na kori lastara, pa se rano u proleće počinju hraniti mladim pupovima. Najveći broj grinja nalazi se na pupovima koji su bliže starijem kondiru.</p>
+            
+            <div class="disease-section-title">Simptomi i štete:</div>
+            <p class="disease-text">Prve prave štete vidimo pojavom mehurastih izraslina na lisnoj površini koja vremenom požuti ili pocrveni. Iz mehura se vrlo brzo razvije šiška kojom se značajno smanjuje proizvodna sposobnost lista. Pri vrlo jakom napadu list se lako osuši. Napada takođe cvet i mlade grozdove, a pri jakom napadu lako uništi ceo lastar.<br><br>Štete na pupovima zavise od broja grinja: ukoliko je na pupu više od 100 grinja pup se neće razviti. Ako je broj manji, pup će se razviti ali će biti deformisan, skraćenih žila, izboji će biti kraći, cvet će se osipati i grozd se neće pravilno formirati.</p>
+            
+            <div class="disease-section-title">Zaštita i tretmani:</div>
+            <p class="disease-text">Ponekad je dovoljno tokom vegetacije u zaštitu dodati 3-4x pripravka na bazi sumpora, smanjene koncentracije 0,3 – 0,4%. U slučaju jačeg napada prskamo dva puta sa 2% koncentracijom sumpornog pripravka ili sa 20% sumporno-krečnim pripravcima.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 6. PREPARATI -->
+    <div class="card" id="preparati">
+      <h2>🧪 Preparati</h2>
+      <p class="disease-text">Baza podataka o fungicidima, insekticidima, mikrobiološkim i prihranjivačkim preparatima.</p>
+    </div>
+
+    <!-- 7. GALERIJA -->
+    <div class="card" id="galerija">
+      <h2>🖼️ Galerija</h2>
+      <p class="disease-text">Slike vinograda, faza napredovanja loze i radova kroz godine.</p>
+    </div>
+
+    <!-- 8. ISTORIJA VINOGRADA -->
+    <div class="card" id="istorija">
+      <h2>📜 Istorija vinograda</h2>
+      
+      <div class="history-subtitle">OD PRVIH ČOKOTA DO PODRUMA ĐEDOVINA</div>
+      <p class="history-text"><i>Priča o Miloradu Miljanoviću i vinogradu koji je postao porodična tradicija.</i></p>
+
+      <div class="disease-section-title">🌱 Sve je počelo 2005. godine, na padinama Majevice</div>
+      <p class="history-text">Naš otac, <b>Milorad Miljanović</b>, iz ljubavi prema zemlji i iz čistog hobija zasadio je svojih prvih 200 čokota vinove loze. Među prvim zasadima našle su se različite sorte stonog i vinskog grožđa: <i>Smederevka, Italija, Ribijer, Drenjak, Kardinal, Afus Ali i Frankovka</i>.</p>
+      <p class="history-text">Tada niko nije razmišljao o velikim količinama, vinariji ili ozbiljnoj proizvodnji. Bio je to jednostavno hobi i ljubav prema vinovoj lozi. Otac je svojim rukama podizao vinograd, učio kroz iskustvo i iz godine u godinu prenosio svoje znanje i ljubav prema lozi na svoje sinove.</p>
+
+      <div class="disease-section-title">🌿 Proširenje 2010. godine</div>
+      <p class="history-text">Pet godina kasnije, 2010. godine, odlučio je da proširi vinograd. Zasadio je još oko 1.000 čokota, ovog puta pretežno Frankovke i Belog Burgundca.</p>
+      <p class="history-text">Vinograd je rastao, ali tada još nismo imali dovoljno znanja o pravilnom uzgoju, orezivanju, zaštiti i načinu na koji se iz loze može izvući njen pravi potencijal. Prinosi zato nisu bili veliki. Ipak, ono najvažnije je ostalo — vinograd je opstao.</p>
+
+      <div class="disease-section-title">🍇 2023. godina – nova odluka</div>
+      <p class="history-text">Godine 2023. odlučio sam da se ozbiljnije posvetim vinogradu. Počeo sam od samog početka — od orezivanja i pravilnog formiranja čokota, vraćanja loze u pravilan položaj i stvaranja uslova da se ponovo pravilno razvija.</p>
+      <p class="history-text">Počeo sam da učim, istražujem i stičem nova znanja o vinovoj lozi, njenoj zaštiti, ishrani, rezidbi, fenofazama i svemu što utiče na kvalitet grožđa. Nije to bio posao koji se mogao završiti za jednu sezonu. Trebalo je vremena.</p>
+      <p class="history-text">Ali nakon nekoliko godina rada i učenja, 2026. godine vinograd je ponovo počeo da pokazuje svoj stari sjaj. Čokoti su se oporavili, razvoj loze postao je pravilniji, a prinosi su počeli da rastu. Sa više grožđa došla je i prilika za više vina i rakije. Ali najvažnije od svega — počeli smo bolje razumijevati zašto se nešto u vinogradu radi i kako svaki korak utiče na krajnji proizvod.</p>
+
+      <div class="disease-section-title">🍷 Od hobija do porodične priče</div>
+      <p class="history-text">Danas ono što je naš otac započeo iz hobija više nije samo vinograd. To je postala porodična priča koja se nastavlja.</p>
+      <p class="history-text">Od prvih 200 čokota iz 2005. godine, preko proširenja 2010. godine, do našeg novog pristupa vinogradu od 2023. godine — svaka generacija je ostavila svoj trag. Naš cilj nije samo da proizvedemo vino i rakiju. Želimo da iz godine u godinu učimo više, ulažemo više u znanje i unapređujemo svaki korak — od zemlje i čokota, preko grožđa i fermentacije, pa sve do konačnog proizvoda.</p>
+      <p class="history-text">Jer vjerujemo da se kvalitet ne stvara u jednom danu. On nastaje godinama rada, iskustva, učenja i ljubavi prema onome što radiš. A ono što je počelo kao očev hobi želimo da sačuvamo, razvijamo i jednog dana prenesemo dalje.</p>
+
+      <div class="history-quote">
+        "Jer vinograd nije samo ono što smo naslijedili.<br>Vinograd je i ono što ostavljamo iza sebe."
+      </div>
+    </div>
+
+    <!-- 9. OSNIVAČ -->
+    <div class="card" id="osnivac">
+      <h2>👤 Osnivač</h2>
+      <div class="founder-box">
+        <img src="milorad.jpg" alt="Milorad Miljanović" class="founder-img">
+        <div class="founder-name">Milorad Miljanović</div>
+        <p class="founder-quote">
+          Čovjek od kojeg je sve počelo.<br>
+          Jedan čokot zasadio je iz ljubavi.<br>
+          Mi danas nastavljamo priču koju je započeo.
+        </p>
       </div>
     </div>
 
@@ -222,6 +535,28 @@
     function toggleMenu() {
       const menu = document.getElementById('navMenu');
       menu.classList.toggle('active');
+    }
+
+    function izracunajDozu() {
+      const voda = parseFloat(document.getElementById('voda').value);
+      const doza = parseFloat(document.getElementById('doza').value);
+      const rezultat = document.getElementById('rezultat');
+
+      if (isNaN(voda) || isNaN(doza)) {
+        rezultat.style.display = 'block';
+        rezultat.innerText = 'Molimo unesite ispravne brojeve.';
+        return;
+      }
+
+      let kolicina;
+      if (doza < 1) {
+        kolicina = (voda * doza * 10).toFixed(2);
+      } else {
+        kolicina = ((voda * doza) / 100).toFixed(2);
+      }
+
+      rezultat.innerText = `Potrebno je: ${kolicina} ml (ili g) preparata za ${voda}L vode.`;
+      rezultat.style.display = 'block';
     }
   </script>
 </body>
